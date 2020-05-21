@@ -1,0 +1,4 @@
+
+all:
+	pdftex aplcard.tex
+

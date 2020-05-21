@@ -1,0 +1,580 @@
+% Reference Card for APL
+%**start of header
+\newcount\columnsperpage
+
+% The format for this file is adapted from the GNU Emacs reference
+% card version 1.9, by Stephen Gildea.
+
+% This file can be printed with 1, 2, or 3 columns per page (see below).
+% Specify how many you want here.
+
+\columnsperpage=3
+
+% PDF output layout.  0 for A4, 1 for letter (US), a `l' is added for
+% a landscape layout.
+
+\input pdflayout.sty
+\pdflayout=(1l)
+
+% Nothing else needs to be changed.
+% Typical command to format:  tex calccard.tex
+% Typical command to print (3 cols):  dvips -t landscape calccard.dvi
+
+% Copyright (C) 2020 Jeronimo Pellegrini
+
+% This document is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+
+% As a special additional permission, you may distribute reference cards
+% printed, or formatted for printing, with the notice "Released under
+% the terms of the GNU General Public License version 3 or later"
+% instead of the usual distributed-under-the-GNU-GPL notice, and without
+% a copy of the GPL itself.
+
+% This document is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with GNU APL.  If not, see <https://www.gnu.org/licenses/>.
+
+% This file is intended to be processed by plain TeX (TeX82).
+%
+% The final reference card has six columns, three on each side.
+% This file can be used to produce it in any of three ways:
+% 1 column per page
+%    produces six separate pages, each of which needs to be reduced to 80%.
+%    This gives the best resolution.
+% 2 columns per page
+%    produces three already-reduced pages.
+%    You will still need to cut and paste.
+% 3 columns per page
+%    produces two pages which must be printed sideways to make a
+%    ready-to-use 8.5 x 11 inch reference card.
+%    For this you need a dvi device driver that can print sideways.
+% Which mode to use is controlled by setting \columnsperpage above.
+%
+% Author (Calc reference card):
+%  Jeronimo Pellegrini <j_p@aleph0.info>
+%
+% Author (refcard.tex format):
+%  Stephen Gildea <stepheng+emacs@gildea.com>
+
+\input version.tex
+
+\def\shortcopyrightnotice{\vskip 1ex plus 2 fill
+  \centerline{\small \copyright\ \year\ Jeronimo Pellegrini
+  Permissions on back.}}
+
+\def\copyrightnotice{
+\vskip 1ex plus 2 fill\begingroup\small
+\centerline{Copyright \copyright\ \year\ Jeronimo Pellegrini}
+\centerline{designed by Jeronimo Pellegrini and Stephen Gildea,}
+\centerline{for GNU APL}
+
+Released under the terms of the GNU General Public License version 3 or later.
+
+For more APL documentation, check the GNU APL site.
+For the \TeX{} source for this card,
+see:
+
+{\small https://www.github.com/jpellegrini/gnu-apl-refcard}
+\endgroup}
+
+% make \bye not \outer so that the \def\bye in the \else clause below
+% can be scanned without complaint.
+\def\bye{\par\vfill\supereject\end}
+
+\newdimen\intercolumnskip
+\newbox\columna
+\newbox\columnb
+
+\def\ncolumns{\the\columnsperpage}
+
+\message{[\ncolumns\space
+  column\if 1\ncolumns\else s\fi\space per page]}
+
+\def\scaledmag#1{ scaled \magstep #1}
+
+% This multi-way format was designed by Stephen Gildea
+% October 1986.
+\if 1\ncolumns
+  \hsize 4in
+  \vsize 10in
+  \voffset -.7in
+  \font\titlefont=\fontname\tenbf \scaledmag3
+  \font\headingfont=\fontname\tenbf \scaledmag2
+  \font\smallfont=\fontname\sevenrm
+  \font\smallsy=\fontname\sevensy
+
+  \footline{\hss\folio}
+  \def\makefootline{\baselineskip10pt\hsize6.5in\line{\the\footline}}
+\else
+  \hsize 3.2in
+  \vsize 7.95in
+  \hoffset -.75in
+  \voffset -.745in
+  \font\titlefont=cmbx10 \scaledmag2
+  \font\headingfont=cmbx10 \scaledmag1
+  \font\smallfont=cmr6
+  \font\smallsy=cmsy6
+  \font\eightrm=cmr8
+  \font\eightbf=cmbx8
+  \font\eightit=cmti8
+  \font\eighttt=cmtt8
+  \font\eightsy=cmsy8
+  \textfont0=\eightrm
+  \textfont2=\eightsy
+  \def\rm{\eightrm}
+  \def\bf{\eightbf}
+  \def\it{\eightit}
+  \def\tt{\eighttt}
+  \normalbaselineskip=.8\normalbaselineskip
+  \normallineskip=.8\normallineskip
+  \normallineskiplimit=.8\normallineskiplimit
+  \normalbaselines\rm		%make definitions take effect
+
+  \if 2\ncolumns
+    \let\maxcolumn=b
+    \footline{\hss\rm\folio\hss}
+    \def\makefootline{\vskip 2in \hsize=6.86in\line{\the\footline}}
+  \else \if 3\ncolumns
+    \let\maxcolumn=c
+    \nopagenumbers
+  \else
+    \errhelp{You must set \columnsperpage equal to 1, 2, or 3.}
+    \errmessage{Illegal number of columns per page}
+  \fi\fi
+
+  \intercolumnskip=.46in
+  \def\abc{a}
+  \output={%
+      % This next line is useful when designing the layout.
+      %\immediate\write16{Column \folio\abc\space starts with \firstmark}
+      \if \maxcolumn\abc \multicolumnformat \global\def\abc{a}
+      \else\if a\abc
+	\global\setbox\columna\columnbox \global\def\abc{b}
+        %% in case we never use \columnb (two-column mode)
+        \global\setbox\columnb\hbox to -\intercolumnskip{}
+      \else
+	\global\setbox\columnb\columnbox \global\def\abc{c}\fi\fi}
+  \def\multicolumnformat{\shipout\vbox{\makeheadline
+      \hbox{\box\columna\hskip\intercolumnskip
+        \box\columnb\hskip\intercolumnskip\columnbox}
+      \makefootline}\advancepageno}
+  \def\columnbox{\leftline{\pagebody}}
+
+  \def\bye{\par\vfill\supereject
+    \if a\abc \else\null\vfill\eject\fi
+    \if a\abc \else\null\vfill\eject\fi
+    \end}
+\fi
+
+% we won't be using math mode much, so redefine some of the characters
+% we might want to talk about
+\catcode`\^=12
+\catcode`\_=12
+
+\chardef\\=`\\
+\chardef\{=`\{
+\chardef\}=`\}
+
+\hyphenation{mini-buf-fer}
+
+\parindent 0pt
+\parskip 1ex plus .5ex minus .5ex
+
+\def\small{\smallfont\textfont2=\smallsy\baselineskip=.8\baselineskip}
+
+\outer\def\newcolumn{\vfill\eject}
+
+\outer\def\title#1{{\titlefont\centerline{#1}}\vskip 1ex plus .5ex}
+
+\outer\def\section#1{\par\filbreak
+  \vskip 3ex plus 2ex minus 2ex {\headingfont #1}\mark{#1}%
+  \vskip 2ex plus 1ex minus 1.5ex}
+
+\newdimen\keyindent
+
+\def\beginindentedkeys{\keyindent=1em}
+\def\endindentedkeys{\keyindent=0em}
+\endindentedkeys
+
+\def\paralign{\vskip\parskip\halign}
+
+\def\<#1>{$\langle${\rm #1}$\rangle$}
+
+\def\kbd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+
+\def\beginexample{\par\leavevmode\begingroup
+  \obeylines\obeyspaces\parskip0pt\tt}
+{\obeyspaces\global\let =\ }
+\def\endexample{\endgroup}
+
+\def\key#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.75\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\kbd{#2}\hfil}}
+
+% akey has the right size to the left, made specially for the COMMANDS
+% sections, so no lines would overfill
+\def\akey#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.64\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\kbd{#2}\hfil}}
+
+% akey has the right size to the left, made specially for the NOTATION
+% section , so no lines would overfill
+\def\bkey#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.65\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\kbd{#2}\hfil}}
+
+
+\newbox\metaxbox
+\setbox\metaxbox\hbox{\kbd{M-x }}
+\newdimen\metaxwidth
+\metaxwidth=\wd\metaxbox
+
+\def\metax#1#2{\leavevmode\hbox to \hsize{\hbox to .75\hsize
+  {\hskip\keyindent\relax#1\hfil}%
+  \hskip -\metaxwidth minus 1fil
+  \kbd{#2}\hfil}}
+
+\def\threecol#1#2#3{\hskip\keyindent\relax#1\hfil&\kbd{#2}\quad
+  &\kbd{#3}\quad\cr}
+
+%
+% Calc-specific commands here:
+%
+
+\let\^=^
+\let\_=_
+\catcode`\^=7
+\catcode`\_=8
+
+% Redefine to make spaces a bit smaller
+\let\wkbd=\kbd
+\def\kbd#1{{\spaceskip=.37em\tt#1}\null}
+
+\def\wkey#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.75\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\wkbd{#2}\hfil}}
+\def\wthreecol#1#2#3{\hskip\keyindent\relax#1\hfil&\wkbd{#2}\quad
+  &\wkbd{#3}\quad\cr}
+
+\def\stkkey#1#2#3#4{\par\line{\hskip1em\rlap{\kbd{#1}}\hskip4.5em%
+  \rlap{{#2}}\hskip7.5em\rlap{{#3}}\hskip7.5em\rlap{{#4}}\hfill}\par}
+\def\S#1{$S_{\scriptscriptstyle #1}$}
+\def\swap{$\leftrightarrow$}
+
+\def\calcprefix{C-x *\ }
+\def\,{{\rm ,\hskip.55em}\ignorespaces}
+\def\lesssectionskip{\vskip-1.5ex}
+
+\def\iline#1{\par\line{\hskip1em\relax #1\hfill}\par}
+
+\if 1\ncolumns
+\else
+  \font\eighti=cmmi8
+  \textfont1=\eighti
+\fi
+
+%**end of header
+
+
+% Column 1
+
+\title{GNU APL Reference Card}
+
+\centerline{(for GNU APL version \aplversion)}
+
+\def\rul{$\underline{\phantom{AAAAAAAAAAAAAAAAAAAAAA}}$}
+
+\section{APL Commands}
+{\tt F} is a filename
+
+{\tt G} is a logging facility
+
+{\tt L} is a library
+
+{\tt O} is an object
+
+{\tt P} is a path
+
+{\tt S} is a symbol
+
+{\tt W} is a workspace
+
+\akey{FIXME:}{)CHECK[ xxxx ]}
+\akey{clear workspace}{)CLEAR}
+\akey{save workspace as {\tt CONTINUE} and exit}{)CONTINUE}
+\akey{copies objects from given workspace}{)COPY [L] W [O $\ldots$]}
+\akey{remove workspace}{)DROP [L] W}
+\akey{dump workspace (readable, HTML escaped)}{)DUMP-HTML [[L] W]}
+\akey{FIXME:}{)DUMPV [[L] W]}
+\akey{dump workspace (readable APL)}{)DUMP [[L] W]}
+\akey{erase symbol(s)}{)ERASE S $\ldots$}
+\akey{show functions}{)FNS [from-to]}
+\akey{help}{)HELP [primitive]}
+\akey{history}{)HIST [CLEAR]}
+\akey{runs command on host}{)HOST command $\ldots$}
+\akey{loads workspace (IBM .atf format)}{)IN F [O $\ldots$]}
+\akey{show libraries and paths}{)LIBS [[L] path]}
+\akey{show saved workspaces}{)LIB [L|P] [from-to]}
+\akey{load workspace}{)LOAD [L] W}
+\akey{FIXME:}{)MORE}
+\akey{lists symbols matching name}{)NMS [from-to]}
+\akey{quit APL}{)OFF}
+\akey{show operators}{)OPS [from-to]}
+\akey{dump workspace (IBM .atf format)}{)OUT name [O $\ldots$]}
+\akey{protects during copying}{)PCOPY [L] W [O $\ldots$]}
+\akey{protects during loading}{)PIN F [O $\ldots$]}
+\akey{FIXME:}{)QLOAD [L] W]}
+\akey{reset state indicator}{)RESET }
+\akey{save workspace}{)SAVE [[L] W]}
+\akey{clear suspended functions}{)SIC}
+\akey{see suspended functions and locals}{)SINL}
+\akey{see suspended functions}{)SIS}
+\akey{state indicator}{)SI}
+\akey{show symbol count}{)SYMBOLS [count]}
+\akey{FIXME:}{)VALUES}
+\akey{show variables}{)VARS [from-to]}
+\akey{get/set workspace ID}{)WSID [W]}
+\section{GNU extension commands}
+\akey{toggles boxing of values when printing}{]BOXING [OFF|num]}
+\akey{toggle colored output}{]COLOR [ON|OFF]}
+\akey{dump workspace in HTML file}{]DOXY [path]}
+\akey{FIXME:}{]EXPECT error\_count}
+\akey{help}{]HELP [primitive]}
+\akey{show keyboard layout}{]KEYB}
+\akey{FIXME:}{]LIB [L|P] [from-to]}
+\akey{show/set logging facilities}{]LOG [G [ON|OFF]]}
+\akey{FIXME:}{]NEXTFILE}
+\akey{FIXME:}{]OWNERS}
+\akey{performance statistics}{]PSTAT [CLEAR|SAVE]}
+\akey{FIXME:}{]SIS}
+\akey{FIXME:}{]SI}
+\akey{FIXME:}{]SVARS}
+\akey{FIXME:}{]SYMBOL S}
+\akey{define user command}{]USERCMD [ $\ldots$ ]}
+\akey{FIXME:}{]XTERM [ON|OFF]}
+
+\section{System variables}
+
+\section{Emacs interaction mode}
+\key{beginning of defun}{C-M-a}
+\key{end of defun}{C-M-e}
+\key{find function at point}{M-.}
+\key{apropos symbol}{C-c C-a}
+\key{edit function}{C-c C-f}
+\key{show help for symbol}{C-c C-h}
+\key{finnapl list}{C-c TAB}
+\key{show keyboard}{C-c C-k}
+\key{plot line}{C-c RET}
+\key{edit variable}{C-c C-v}
+\key{trace}{C-c C-.}
+\section{Emacs edit mode}
+
+
+% C-c             Prefix Command
+% ESC             Prefix Command
+% insert space    s-SPC           gnu-apl-insert-spc
+% s-!             insert-sym-apl-i-beam
+% s-"             insert-sym-apl-not-identical-to
+% s-#             insert-sym-apl-del-stile
+% s-$             insert-sym-apl-delta-stile
+% s-%             insert-sym-apl-circle-stile
+% s-&             insert-sym-apl-circled-minus
+% s-'             insert-sym-apl-up-tack-jot
+% s-(             insert-sym-apl-down-caret-tilde
+% s-)             insert-sym-apl-up-caret-tilde
+% s-*             insert-sym-apl-circle-star
+% s-+             insert-sym-apl-quad-divide
+% s-,             insert-sym-apl-shoe-jot
+% s--             insert-sym-apl-multiplication-sign
+% s-/             insert-sym-apl-slash-bar
+% s-0             insert-sym-apl-logical-and
+% s-1             insert-sym-apl-diaeresis
+% s-2             insert-sym-apl-macron
+% s-3             insert-sym-apl-less-than
+% s-4             insert-sym-apl-less-than-or-equal-to
+% s-5             insert-sym-apl-equals
+% s-6             insert-sym-apl-greater-than-or-equal-to
+% s-7             insert-sym-apl-greater-than
+% s-8             insert-sym-apl-not-equal-to
+% s-9             insert-sym-apl-logical-or
+% s-:             insert-sym-apl-identical-to
+% s-;             insert-sym-apl-down-tack-jot
+% s-<             insert-sym-apl-comma-bar
+% s-=             insert-sym-apl-division-sign
+% s->             insert-sym-apl-backslash-bar
+% s-?             insert-sym-apl-quad-colon
+% s-@             insert-sym-apl-del-tilde
+% s-A             insert-sym-apl-alpha-underbar
+% s-B             insert-sym-apl-pound-sign
+% s-C             insert-sym-apl-left-shoe-stile
+% s-E             insert-sym-apl-epsilon-underbar
+% s-F             insert-sym-apl-del-tilde
+% s-H             insert-sym-apl-delta-underbar
+% s-I             insert-sym-apl-iota-underbar
+% s-J             insert-sym-apl-jot-diaeresis
+% s-K             insert-sym-apl-quad-diamond
+% s-L             insert-sym-apl-squish-quad
+% s-O             insert-sym-apl-circle-diaeresis
+% s-P             insert-sym-apl-star-diaeresis
+% s-T             insert-sym-apl-tilde-diaeresis
+% s-W             insert-sym-apl-omega-underbar
+% s-X             insert-sym-apl-greek-letter-chi
+% s-Y             insert-sym-apl-yen-sign
+% s-[             insert-sym-apl-leftarrow
+% s-\             insert-sym-apl-right-tack
+% s-]             insert-sym-apl-rightarrow
+% s-^             insert-sym-apl-circle-backslash
+% s-_             insert-sym-apl-exclamation-mark
+% s-`             insert-sym-apl-diamond
+% s-a             insert-sym-apl-alpha
+% s-b             insert-sym-apl-up-tack
+% s-c             insert-sym-apl-intersection
+% s-d             insert-sym-apl-left-floor
+% s-e             insert-sym-apl-epsilon
+% s-f             insert-sym-apl-underscore
+% s-g             insert-sym-apl-nabla
+% s-h             insert-sym-apl-increment
+% s-i             insert-sym-apl-iota
+% s-j             insert-sym-apl-ring-operator
+% s-k             insert-sym-apl-apostrophe
+% s-l             insert-sym-apl-quad
+% s-m             insert-sym-apl-divides
+% s-n             insert-sym-apl-down-tack
+% s-o             insert-sym-apl-circle
+% s-p             insert-sym-apl-star-operator
+% s-q             insert-sym-apl-question-mark
+% s-r             insert-sym-apl-rho
+% s-s             insert-sym-apl-left-ceiling
+% s-t             insert-sym-apl-tilde
+% s-u             insert-sym-apl-downarrow
+% s-v             insert-sym-apl-union
+% s-w             insert-sym-apl-omega
+% s-x             insert-sym-apl-superset-of
+% s-y             insert-sym-apl-uparrow
+% s-z             insert-sym-apl-subset-of
+% s-{             insert-sym-apl-quote-quad
+% s-|             insert-sym-apl-left-tack
+% s-}             insert-sym-apl-zilde
+
+\key{go to beginning of defun}{C-M-a}
+\key{go to end of defun}{C-M-e}
+\key{find function at point}{M-.}
+\key{\rul}{}
+\key{apropos symbol}{C-c C-a}
+\key{interactive send current function}{C-c C-c}
+\key{help for symbol}{C-c C-h}
+\key{finnapl list}{C-c TAB}
+\key{show keyboard}{C-c C-k}
+\key{interactive send buffer}{C-c C-l}
+\key{interactive send region}{C-c C-s}
+\key{switch to interactive}{C-c C-z}
+\key{trace}{C-c C-.}
+\key{indent}{C-M-q}
+
+\section{Notation}
+\input wasyfont
+%\wkey{system var/function}{$\square$}
+\bkey{comment}{$\APLcomment$}
+\bkey{assignment}{$\leftarrow$}
+\bkey{function definition}{$\APLdown$}
+\bkey{\rul}{}
+\bkey{a}{+ a}
+\bkey{a + b}{a + b}
+\bkey{- a}{- a}
+\bkey{a - b}{a - b}
+\bkey{magnitude of a}{| a}
+\bkey{b mod a}{a | b}
+\bkey{signal (-1, 0 +1)}{$\times$ a}
+\bkey{ab}{a $\times$ b}
+\bkey{$1/$a}{$\div$ a}
+\bkey{a$/$b}{a $\div$ b}
+\bkey{floor of a}{$\lfloor$a}
+\bkey{min(a,b)}{a$\lfloor$b}
+\bkey{ceiling of a}{$\lceil$a}
+\bkey{max(a,b)}{a$\lceil$b}
+\bkey{$e^{\tt a}$}{* a}
+\bkey{${\tt a}^{\tt b}$}{a * b}
+\bkey{$\log$(a)}{$\APLlog$ a}
+\bkey{$\log_{\hbox{b}}$(a)}{b $\APLlog$ a}
+\bkey{first $n$ non-negative integers}{$\iota$ n}
+\bkey{\rul}{}
+\bkey{a = b}{a = b}     
+\bkey{a $<$ b}{a < b}     
+\bkey{a $>$ b}{a > b}     
+\bkey{a $\leq$ b}{a $\leq$ b}
+\bkey{a $\geq$ b}{a $\geq$ b}
+\bkey{not a}{$\APLnot*$ a}
+\bkey{a or b}{a $\vee$ b}
+\bkey{a and b}{a $\wedge$ b}
+\bkey{a nor b}{a $\APLnot{\lor}$ b}
+\bkey{a nand b}{a $\APLnot{\land}$ b}
+\bkey{\rul}{}
+\bkey{a!}{!a}
+\bkey{${b \choose a}$}{a!b}
+\bkey{\rul}{}
+\bkey{a$\pi$}{$\APLcirc*$a}
+\bkey{a=1 $\to\sin$(b), a=2 $\to\cos$(b), a=3 $\to\tan$(b)}{a $\APLcirc*$ b}
+\bkey{random integer in [1,a]}{?a}
+\bkey{a distinct random integers in [1,b]}{a?b}
+\bkey{\rul}{}
+\bkey{makes a vector out of A}{, A}
+\bkey{append B to A}{A,B}
+\bkey{number of components in each dimension of A}{$\rho$ A}
+\bkey{array with shape A and data elements B}{A$\rho$ B}
+\bkey{inverse matrix of A}{$\APLinv$ A}
+\bkey{reverse elements of A (1$^{st}$ index)}{}
+\bkey{reverse elements of A (last index)}{$\APLvert{\Circle}$A}
+\bkey{rotate B by A positions}{A$\APLvert{\Circle}$B}
+\bkey{drop first A elements of B}{A$\downarrow$B}
+\bkey{select first A elements of B}{A$\uparrow$B}
+\bkey{i-th element of A}{A[i]]}
+\bkey{element of A with indices i, j, k, $\ldots$}{A[i j k $\ldots$]]}
+\bkey{element of A w/indices i, j, $\ldots$ in 1$^{st}$ dimension, k, l, $\ldots$ in second, $\ldots$}{A[i $\ldots$;  k $\ldots$; $\ldots$]}
+\bkey{\rul}{}
+\bkey{transpose of A}{$\invdiameter$A}
+\bkey{transpose of B, axes ordered by A}{A$\invdiameter$B}
+\bkey{maps A: 1 for a$\in$ B, 0 for a$\notin$ B}{A$\in$B}
+\bkey{reduce {\tt op} over array A}{op/A}
+\bkey{compress: select B using A as mask}{A/B}
+\bkey{expand: insert zeros in B using A as mask}{A$\setminus$B}
+\bkey{grade up A}{$\APLvert{\APLup}$A}
+\bkey{FIXME:}{A$\APLvert{\APLup}$B}
+\bkey{grade down A}{$\APLvert{\APLdown}$A}
+\bkey{FIXME:}{A$\APLvert{\APLdown}$B}
+\bkey{transpose of A}{$\invdiameter$A}
+\bkey{enclose A}{$\subset$ A}
+\bkey{FIXME:}{A$\subset$ B}
+\bkey{disclose A}{$\subset$ A}
+\bkey{FIXME:}{A$\subset$ B}
+\bkey{\rul}{}
+\bkey{FIXME:}{A$\bot$B}
+\bkey{FIXME:}{A$\top$B}
+
+\bkey{branch to line A}{$\rightarrow$A}
+
+\bkey{execute APL expression A}{$\APLcirc{\bot}$A}
+\bkey{format A as chars}{$\APLcirc{\top}$A}
+
+\section{Function Definition}
+
+\section{Getting Help}
+
+\section{Error Recovery}
+
+\section{Examples}
+
+
+\copyrightnotice
+
+\bye
+
+% Local variables:
+% compile-command: "pdftex aplcard"
+% End:
