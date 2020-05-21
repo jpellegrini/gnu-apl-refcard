@@ -592,10 +592,10 @@ see:
 
 % typesetting with tabs: TeX Book, p.232
 
-\settabs\+\indent&$\APLminus$123 &Bsqrt($\APLminus$1+B$\times$B)...&$\APLminus$123  &D.......\cr
+\settabs\+\indent&$\APLminus$123 &Bsqrt($\APLminus$1+B$\times$B)......&$\APLminus$123  &D.......\cr
 \+&{\tt A}& {\tt A}$\circ${\tt B}&{\tt A}&{\tt A}$\circ${\tt B}\cr
 \+&&&&\cr
-\+&  0 &{\tt (1-B}$\times${\tt B)*0.5}     &    & \cr
+\+&  0 &$\sqrt{\hbox{\tt 1-B}\times\hbox{\tt B}}$     &    & \cr
 \+& $\APLminus$1 & arcsin {\tt B}       &  1 & sin {\tt B} \cr
 \+& $\APLminus$2 & arccos {\tt B}       &  2 & cos {\tt B} \cr
 \+& $\APLminus$3 & arctan {\tt B}       &  3 & tan {\tt B} \cr
@@ -608,8 +608,10 @@ see:
 \+& $\APLminus$9 & {\tt B}              &  9 & real part of {\tt B} \cr
 \+&$\APLminus$10 & {\tt +B}             & 10 & $\mid${\tt B} \cr
 \+&$\APLminus$11 & {\tt 0J1}$\times${\tt B}   & 11 & imag part of {\tt B} \cr
-\+&$\APLminus$12 & {\tt *0J1}$\times${\tt B}  & 12 & arc {\tt B} \cr
-   
+\+&$\APLminus$12 & {\tt *0J1}$\times${\tt B} ($e^{iB}$) & 12 & arc {\tt B} \cr
+
+For {\tt A}$=8$, the sign before the square root is the opposite sign of $\tt B$.
+
 \section{Function Definition}
 
 Example:
