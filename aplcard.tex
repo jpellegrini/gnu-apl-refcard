@@ -396,8 +396,8 @@ see:
 \wkey{shared variable event}{$\APLbox$SVE}
 \wkey{system links}{$\APLbox$SYL}
 \wkey{terminal control characters}{$\APLbox$TC}
-\wkey{time stamp}{$\APLbox$TS}
-\wkey{time zone}{$\APLbox$TZ}
+\wkey{time stamp (current time)}{$\APLbox$TS}
+\wkey{time zone (offset from GMT)}{$\APLbox$TZ}
 \wkey{user load}{$\APLbox$UL}
 \wkey{axis argument}{$\APLbox$X}
 \wkey{workspace available (bytes for workspace)}{$\APLbox$WA}
@@ -533,10 +533,12 @@ see:
 
 \section{Notation}
 \bkey{comment}{$\APLcomment$}
+\bkey{statement separator}{$\diamond$}
 \bkey{assignment}{A$\leftarrow\;\ldots$}
 \bkey{assignment}{(A B C)$\leftarrow\;\ldots\;\ldots\;\ldots$}
 \bkey{function definition}{$\APLdown$}
 \bkey{\rul}{}
+\bkey{zilde (empty vector)}{$\APLnot{O}$}
 \bkey{a}{+ a}
 \bkey{a + b}{a + b}
 \bkey{- a}{- a}
@@ -562,11 +564,17 @@ see:
 \bkey{a $>$ b}{a > b}     
 \bkey{a $\leq$ b}{a $\leq$ b}
 \bkey{a $\geq$ b}{a $\geq$ b}
+\bkey{expression max depth}{$\equiv$ a}
+\bkey{match (value and type)}{a $\equiv$ b}
+\bkey{expression min depth}{$\not\equiv$ a}
+\bkey{not match}{a $\not\equiv$ b}
 \bkey{not a}{$\APLnot*$ a}
 \bkey{a or b}{a $\vee$ b}
 \bkey{a and b}{a $\wedge$ b}
 \bkey{a nor b}{a $\APLnot{\lor}$ b}
 \bkey{a nand b}{a $\APLnot{\land}$ b}
+\bkey{a $\in$ b ?}{a $\in$ b}
+\bkey{find a in b (binary index)}{a $\underline{\in}$ b ?}
 \bkey{\rul}{}
 \bkey{a!}{!a}
 \bkey{${b \choose a}$}{a!b}
@@ -639,7 +647,7 @@ see:
 \+& $\APLminus$9 & {\tt B}              &  9 & real part of {\tt B} \cr
 \+&$\APLminus$10 & {\tt +B}             & 10 & $\mid${\tt B} \cr
 \+&$\APLminus$11 & {\tt 0J1}$\times${\tt B}   & 11 & imag part of {\tt B} \cr
-\+&$\APLminus$12 & {\tt *0J1}$\times${\tt B} ($e^{iB}$) & 12 & arc {\tt B} \cr
+\+&$\APLminus$12 & {\tt *0J1}$\times${\tt B} ($e^{iB}$) & 12 & arc {\tt B} (phase of {\tt B}) \cr
 
 For {\tt A}$=8$, the sign before the square root is the opposite sign of $\tt B$.
 
