@@ -20,7 +20,7 @@
 % Typical command to format:  tex calccard.tex
 % Typical command to print (3 cols):  dvips -t landscape calccard.dvi
 
-% Copyright (C) 2020 Jeronimo Pellegrini
+% Copyright (C) 2020 Jeronimo Pellegrini, Lucas S. Vieira
 
 % This document is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -57,8 +57,9 @@
 %    For this you need a dvi device driver that can print sideways.
 % Which mode to use is controlled by setting \columnsperpage above.
 %
-% Author (Calc reference card):
+% Authors (Calc reference card):
 %  Jeronimo Pellegrini <j_p@aleph0.info>
+%  Lucas S. Vieira <lucasvieira@protonmail.com>
 %
 % Author (refcard.tex format):
 %  Stephen Gildea <stepheng+emacs@gildea.com>
@@ -66,13 +67,13 @@
 \input version.tex
 
 \def\shortcopyrightnotice{\vskip 1ex plus 2 fill
-  \centerline{\small \copyright\ \year\ Jeronimo Pellegrini
+  \centerline{\small \copyright\ \year\ Jeronimo Pellegrini, Lucas S. Vieira
   Permissions on back.}}
 
 \def\copyrightnotice{
 \vskip 1ex plus 2 fill\begingroup\small
-\centerline{Copyright \copyright\ \year\ Jeronimo Pellegrini}
-\centerline{designed by Jeronimo Pellegrini and Stephen Gildea,}
+\centerline{Copyright \copyright\ \year\ Jeronimo Pellegrini, Lucas S. Vieira}
+\centerline{designed by Jeronimo Pellegrini, Lucas S. Vieira and Stephen Gildea,}
 \centerline{for GNU APL}
 
 Released under the terms of the GNU General Public License version 3 or later.
@@ -323,8 +324,8 @@ see:
 \akey{copies objects from given workspace}{)COPY [L] W [O $\ldots$]}
 \akey{remove workspace}{)DROP [L] W}
 \akey{dump workspace (readable, HTML escaped)}{)DUMP-HTML [[L] W]}
-\akey{FIXME:}{)DUMPV [[L] W]}
 \akey{dump workspace (readable APL)}{)DUMP [[L] W]}
+\akey{dump workspace (readable APL, verbose)}{)DUMPV [[L] W]}
 \akey{erase symbol(s)}{)ERASE S $\ldots$}
 \akey{show functions}{)FNS [from-to]}
 \akey{help}{)HELP [primitive]}
@@ -334,7 +335,7 @@ see:
 \akey{show libraries and paths}{)LIBS [[L] path]}
 \akey{show saved workspaces}{)LIB [L|P] [from-to]}
 \akey{load workspace}{)LOAD [L] W}
-\akey{FIXME:}{)MORE}
+\akey{show more error info}{)MORE}
 \akey{lists symbols matching name}{)NMS [from-to]}
 \akey{quit APL}{)OFF}
 \akey{show operators}{)OPS [from-to]}
@@ -359,17 +360,17 @@ see:
 \akey{FIXME:}{]EXPECT error\_count}
 \akey{help}{]HELP [primitive]}
 \akey{show keyboard layout}{]KEYB}
-\akey{FIXME:}{]LIB [L|P] [from-to]}
+\akey{FIXME:}{]LIB [L|P] [from-to]} % omitting args is same as ]LIB 0
 \akey{show/set logging facilities}{]LOG [G [ON|OFF]]}
 \akey{FIXME:}{]NEXTFILE}
-\akey{FIXME:}{]OWNERS}
+\akey{FIXME:}{]OWNERS} % same as )VALUES but dumped to stderr
 \akey{performance statistics}{]PSTAT [CLEAR|SAVE]}
-\akey{FIXME:}{]SIS}
+\akey{FIXME:}{]SIS} % Same as ]OWNERS???
 \akey{FIXME:}{]SI}
 \akey{FIXME:}{]SVARS}
-\akey{FIXME:}{]SYMBOL S}
+\akey{describe internal details of symbol S}{]SYMBOL S}
 \akey{define user command}{]USERCMD [ $\ldots$ ]}
-\akey{FIXME:}{]XTERM [ON|OFF]}
+\akey{enable/disable output coloring on console}{]XTERM [ON|OFF]}
 
 
 
@@ -606,17 +607,17 @@ see:
 \bkey{compress: select B using A as mask}{A/B}
 \bkey{expand: insert zeros in B using A as mask}{A$\setminus$B}
 \bkey{grade up A}{$\APLvert{\APLup}$A}
-\bkey{FIXME:}{A$\APLvert{\APLup}$B}
+\bkey{grade up B with elements of A as top priority}{A$\APLvert{\APLup}$B}
 \bkey{grade down A}{$\APLvert{\APLdown}$A}
-\bkey{FIXME:}{A$\APLvert{\APLdown}$B}
+\bkey{grade down B with elements of A as low priority}{A$\APLvert{\APLdown}$B}
 \bkey{transpose of A}{$\invdiameter$A}
 \bkey{enclose A}{$\subset$ A}
-\bkey{FIXME:}{A$\subset$ B}
+\bkey{enclose B with selected elements given the binary vector A}{A$\subset$ B}
 \bkey{disclose A}{$\subset$ A}
-\bkey{FIXME:}{A$\subset$ B}
+\bkey{recursively pick elements of B given the indices in A}{A$\subset$ B}
 \bkey{\rul}{}
-\bkey{FIXME:}{A$\bot$B}
-\bkey{FIXME:}{A$\top$B}
+\bkey{Decode single digits of B with respect to base A}{A$\bot$B}
+\bkey{Encode B with respect to bases given by A}{A$\top$B}
 \bkey{\rul}{}
 \bkey{branch to line A}{$\rightarrow$A}
 \bkey{\rul}{}
