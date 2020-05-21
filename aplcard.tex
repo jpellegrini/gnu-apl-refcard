@@ -229,6 +229,11 @@ see:
 \def\bkey#1#2{\leavevmode\hbox to \hsize{\vtop
   {\hsize=.65\hsize\rightskip=1em
   \hskip\keyindent\relax#1}\kbd{#2}\hfil}}
+  
+\def\ckey#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.65\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}{\tt {#2}}\null}}
+
 
 
 \newbox\metaxbox
@@ -284,6 +289,8 @@ see:
 
 
 % Column 1
+
+\input wasyfont
 
 \title{GNU APL Reference Card}
 
@@ -360,7 +367,22 @@ see:
 \akey{define user command}{]USERCMD [ $\ldots$ ]}
 \akey{FIXME:}{]XTERM [ON|OFF]}
 
+
+
 \section{System variables}
+
+\wkey{user load)}{$\APLbox$UL}
+\wkey{left value arg}{$\alpha$}
+\wkey{right value arg}{$\omega$}
+
+\section{System functions}
+
+\wkey{index origin (indexes start: 1, can be set to 0)}{$\APLbox$IO}
+\wkey{latent expression (executed when workspace is loaded)}{$\APLbox$LX}
+\wkey{print precision (number of digits)}{$\APLbox$PP}
+\wkey{unicode character)}{$\APLbox$UCS}
+\wkey{workspace available (bytes for workspace)}{$\APLbox$WA}
+\wkey{print width (max characters in each printed line)}{$\APLbox$PW}
 
 \section{Emacs interaction mode}
 \key{beginning of defun}{C-M-a}
@@ -479,10 +501,9 @@ see:
 \key{indent}{C-M-q}
 
 \section{Notation}
-\input wasyfont
-%\wkey{system var/function}{$\square$}
 \bkey{comment}{$\APLcomment$}
-\bkey{assignment}{$\leftarrow$}
+\bkey{assignment}{A$\leftarrow\;\ldots$}
+\bkey{assignment}{(A B C)$\leftarrow\;\ldots\;\ldots\;\ldots$}
 \bkey{function definition}{$\APLdown$}
 \bkey{\rul}{}
 \bkey{a}{+ a}
@@ -556,15 +577,36 @@ see:
 \bkey{\rul}{}
 \bkey{FIXME:}{A$\bot$B}
 \bkey{FIXME:}{A$\top$B}
-
+\bkey{\rul}{}
 \bkey{branch to line A}{$\rightarrow$A}
-
+\bkey{\rul}{}
 \bkey{execute APL expression A}{$\APLcirc{\bot}$A}
 \bkey{format A as chars}{$\APLcirc{\top}$A}
+\bkey{\rul}{}
+\bkey{user input}{$\APLbox$}
+\bkey{\rul}{}
+\bkey{system var/function}{$\APLbox$}
 
 \section{Function Definition}
 
-\section{Getting Help}
+
+$f(d,v) = {\big(v_1^d+\cdots+v_n^d\big)^{1/d}}$
+
+{\bf Dynamic function definition (dfn):}
+
+{\tt f $\leftarrow$ \{ ( +/$\omega$*$\alpha$ ) * ($\div\alpha$)  \}}
+
+{\bf Traditional function definiton (tradfn):}
+
+{\tt $\APLdown$res $\leftarrow$ d f v ;sq ;sum
+
+$\;\;$  sq $\leftarrow$ v * 2
+
+$\;\;$  sum $\leftarrow$ +/sq
+
+$\;\;$  res $\leftarrow$ sum*($\div$d)
+
+$\APLdown$}
 
 \section{Error Recovery}
 
