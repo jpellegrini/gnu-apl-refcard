@@ -371,7 +371,7 @@ see:
 
 \section{System variables}
 
-\wkey{user load)}{$\APLbox$UL}
+\wkey{user load}{$\APLbox$UL}
 \wkey{left value arg}{$\alpha$}
 \wkey{right value arg}{$\omega$}
 
@@ -512,7 +512,7 @@ see:
 \bkey{a - b}{a - b}
 \bkey{magnitude of a}{| a}
 \bkey{b mod a}{a | b}
-\bkey{signal (-1, 0 +1)}{$\times$ a}
+\bkey{signal (-1, 0, +1)}{$\times$ a}
 \bkey{ab}{a $\times$ b}
 \bkey{$1/$a}{$\div$ a}
 \bkey{a$/$b}{a $\div$ b}
@@ -555,8 +555,8 @@ see:
 \bkey{rotate B by A positions}{A$\APLvert{\Circle}$B}
 \bkey{drop first A elements of B}{A$\downarrow$B}
 \bkey{select first A elements of B}{A$\uparrow$B}
-\bkey{i-th element of A}{A[i]]}
-\bkey{element of A with indices i, j, k, $\ldots$}{A[i j k $\ldots$]]}
+\bkey{i-th element of A}{A[i]}
+\bkey{element of A with indices i, j, k, $\ldots$}{A[i j k $\ldots$]}
 \bkey{element of A w/indices i, j, $\ldots$ in 1$^{st}$ dimension, k, l, $\ldots$ in second, $\ldots$}{A[i $\ldots$;  k $\ldots$; $\ldots$]}
 \bkey{\rul}{}
 \bkey{transpose of A}{$\invdiameter$A}
@@ -589,14 +589,23 @@ see:
 
 \section{Function Definition}
 
-
+Example:
 $f(d,v) = {\big(v_1^d+\cdots+v_n^d\big)^{1/d}}$
 
 {\bf Dynamic function definition (dfn):}
 
+$\alpha$ is the left argument, $\omega$ is the right argument.
+Function is written between curly brackets.
+
 {\tt f $\leftarrow$ \{ ( +/$\omega$*$\alpha$ ) * ($\div\alpha$)  \}}
 
 {\bf Traditional function definiton (tradfn):}
+
+$\APLdown$ marks begin/end of defun.
+``{\tt $\APLdown$res $\leftarrow$ a f b ;u ;v}'' means
+``function $f$ takes left argument {\tt a},
+right argument {\tt b}, uses local variables {\tt u}
+and {\tt v}, and returns its result in variable {\tt res}''.
 
 {\tt $\APLdown$res $\leftarrow$ d f v ;sq ;sum
 
