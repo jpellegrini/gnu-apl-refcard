@@ -324,8 +324,8 @@ see:
 \akey{copies objects from given workspace}{)COPY [L] W [O $\ldots$]}
 \akey{remove workspace}{)DROP [L] W}
 \akey{dump workspace (readable, HTML escaped)}{)DUMP-HTML [[L] W]}
-\akey{FIXME:}{)DUMPV [[L] W]}
 \akey{dump workspace (readable APL)}{)DUMP [[L] W]}
+\akey{dump workspace (readable APL, verbose)}{)DUMPV [[L] W]}
 \akey{erase symbol(s)}{)ERASE S $\ldots$}
 \akey{show functions}{)FNS [from-to]}
 \akey{help}{)HELP [primitive]}
@@ -335,7 +335,7 @@ see:
 \akey{show libraries and paths}{)LIBS [[L] path]}
 \akey{show saved workspaces}{)LIB [L|P] [from-to]}
 \akey{load workspace}{)LOAD [L] W}
-\akey{FIXME:}{)MORE}
+\akey{show more error info}{)MORE}
 \akey{lists symbols matching name}{)NMS [from-to]}
 \akey{quit APL}{)OFF}
 \akey{show operators}{)OPS [from-to]}
@@ -360,17 +360,17 @@ see:
 \akey{FIXME:}{]EXPECT error\_count}
 \akey{help}{]HELP [primitive]}
 \akey{show keyboard layout}{]KEYB}
-\akey{FIXME:}{]LIB [L|P] [from-to]}
+\akey{FIXME:}{]LIB [L|P] [from-to]} % omitting args is same as ]LIB 0
 \akey{show/set logging facilities}{]LOG [G [ON|OFF]]}
 \akey{FIXME:}{]NEXTFILE}
-\akey{FIXME:}{]OWNERS}
+\akey{FIXME:}{]OWNERS} % same as )VALUES but dumped to stderr
 \akey{performance statistics}{]PSTAT [CLEAR|SAVE]}
-\akey{FIXME:}{]SIS}
+\akey{FIXME:}{]SIS} % Same as ]OWNERS???
 \akey{FIXME:}{]SI}
 \akey{FIXME:}{]SVARS}
-\akey{FIXME:}{]SYMBOL S}
+\akey{describe internal details of symbol S}{]SYMBOL S}
 \akey{define user command}{]USERCMD [ $\ldots$ ]}
-\akey{FIXME:}{]XTERM [ON|OFF]}
+\akey{enable/disable output coloring on console}{]XTERM [ON|OFF]}
 
 
 
