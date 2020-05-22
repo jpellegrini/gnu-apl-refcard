@@ -77,7 +77,6 @@
 \centerline{for GNU APL}
 
 Released under the terms of the GNU General Public License version 3 or later.
-
 For more APL documentation, check the GNU APL site.
 For the \TeX{} source for this card,
 see:
@@ -194,7 +193,10 @@ see:
 
 \outer\def\title#1{{\titlefont\centerline{#1}}\vskip 1ex plus .5ex}
 
-\outer\def\section#1{\par\filbreak
+%% removed filbreak from definition of section, in order to make the
+%% content fit...
+%% -- Jeronimo
+\outer\def\section#1{\par%\filbreak
   \vskip 3ex plus 2ex minus 2ex {\headingfont #1}\mark{#1}%
   \vskip 2ex plus 1ex minus 1.5ex}
 
@@ -299,25 +301,46 @@ see:
 
 \def\rul{$\underline{\phantom{AAAAAAAAAAAAAAAAAAAAAA}}$}
 
-\section{APL Commands}
+\section{Emacs mode}
+{\bf Interaction mode:}\par
+\key{beginning of defun}{C-M-a}
+\key{end of defun}{C-M-e}
+\key{find function at point}{M-.}
+\key{apropos symbol}{C-c C-a}
+\key{edit function}{C-c C-f}
+\key{show help for symbol}{C-c C-h}
+\key{finnapl list}{C-c TAB}
+\key{show keyboard}{C-c C-k}
+\key{plot line}{C-c RET}
+\key{edit variable}{C-c C-v}
+\key{trace}{C-c C-.}
 
-% should these be here, or before the section? (they also apply
-% to the next section)
-
-{\tt F} is a filename
-
-{\tt G} is a logging facility
-
-{\tt L} is a library
-
-{\tt O} is an object
-
-{\tt P} is a path
-
-{\tt S} is a symbol
-
-{\tt W} is a workspace
-
+{\bf Edit mode:}\par
+% C-c             Prefix Command
+% ESC             Prefix Command
+% insert space    s-SPC           gnu-apl-insert-spc
+\key{go to beginning of defun}{C-M-a}
+\key{go to end of defun}{C-M-e}
+\key{find function at point}{M-.}
+\key{apropos symbol}{C-c C-a}
+\key{interactive send current function}{C-c C-c}
+\key{help for symbol}{C-c C-h}
+\key{finnapl list}{C-c TAB}
+\key{show keyboard}{C-c C-k}
+\key{interactive send buffer}{C-c C-l}
+\key{interactive send region}{C-c C-s}
+\key{switch to interactive}{C-c C-z}
+\key{trace}{C-c C-.}
+\key{indent}{C-M-q}
+\section{System}
+Notation for commands:
+% typesetting with tabs: TeX Book, p.232
+\settabs\+\indent&XX &xxxxxxxxxxxxxxxxxxx&XX&xxxxxxxxxxxxxxxxxxx&XX&xxxxxxxxxxxxxxxxxxx\cr
+\+&&&&&&\cr
+\+&{\tt F}& filename         & {\tt L}& library   & {\tt P}& path    \cr
+\+&{\tt G}& logging facility & {\tt O}& object    & {\tt S}& symbol  \cr
+\+&{\tt W}& workspace        &        &           &        &         \cr
+{\bf APL standard commands}\par
 \akey{FIXME:}{)CHECK[ xxxx ]}
 \akey{clear workspace}{)CLEAR}
 \akey{save workspace as {\tt CONTINUE} and exit}{)CONTINUE}
@@ -353,7 +376,8 @@ see:
 \akey{FIXME:}{)VALUES}
 \akey{show variables}{)VARS [from-to]}
 \akey{get/set workspace ID}{)WSID [W]}
-\section{GNU extension commands}
+
+{\bf GNU extension commands}\par
 \akey{toggles boxing of values when printing}{]BOXING [OFF|num]}
 \akey{toggle colored output}{]COLOR [ON|OFF]}
 \akey{dump workspace in HTML file}{]DOXY [path]}
@@ -367,15 +391,12 @@ see:
 \akey{performance statistics}{]PSTAT [CLEAR|SAVE]}
 \akey{FIXME:}{]SIS} % Same as ]OWNERS???
 \akey{FIXME:}{]SI}
-\akey{FIXME:}{]SVARS}
+\akey{shared variables}{]SVARS}
 \akey{describe internal details of symbol S}{]SYMBOL S}
 \akey{define user command}{]USERCMD [ $\ldots$ ]}
 \akey{toggle output coloring on console}{]XTERM [ON|OFF]}
 
-
-
-\section{System variables}
-
+{\bf System variables:}\par
 \wkey{character input/output}{$\APLinput$}
 \wkey{evaluated input/output}{$\APLbox$}
 \wkey{account information}{$\APLbox$AI}
@@ -409,129 +430,41 @@ see:
 \wkey{dfn right value arg}{$\omega$}
 \wkey{dfn right function arg}{$\underline{\omega}$}
 
-\section{System functions}
-
+{\bf System functions:}\par
+\wkey{atomic function}{$\APLbox$AF}
+\wkey{attributes}{$\APLbox$AT}
+\wkey{char representation}{$\APLbox$CR}
+\wkey{delay}{$\APLbox$DL}
+\wkey{D. Knuth's dancing links}{$\APLbox$DLX}
+\wkey{execute alternate}{$\APLbox$EA}
+\wkey{execute both}{$\APLbox$EB}
+\wkey{execute controlled}{$\APLbox$EC}
+\wkey{environment}{$\APLbox$ENV}
+\wkey{event simulate}{$\APLbox$ES}
+\wkey{expunge}{$\APLbox$EX}
+\wkey{fast Fourier transform}{$\APLbox$FFT}
+\wkey{file I/O}{$\APLbox$FIO}
+\wkey{FX}{$\APLbox$FiX}
+\wkey{Gtk GUI}{$\APLbox$GTK}
+\wkey{MAP ravel elements}{$\APLbox$MAP}
+\wkey{input from script}{$\APLbox$INP}
+\wkey{name association}{$\APLbox$NA}
+\wkey{name class}{$\APLbox$NC}
+\wkey{name list}{$\APLbox$NL}
+\wkey{plot a value}{$\APLbox$PLOT}
+\wkey{regular expression}{$\APLbox$RE}
+\wkey{random APL value}{$\APLbox$RVAL}
+\wkey{state indicator}{$\APLbox$SI}
+\wkey{SQL functions}{$\APLbox$SQL}
+\wkey{shared variable control}{$\APLbox$SVC}
+\wkey{shared variable offer}{$\APLbox$SVO}
+\wkey{shared variable query}{$\APLbox$SVQ}
+\wkey{shared variable retraction}{$\APLbox$SVR}
+\wkey{shared variable state}{$\APLbox$SVS}
 \wkey{STOP vector}{$\APLbox$STOP}
 \wkey{transfer form}{$\APLbox$TF}
 \wkey{TRACE vector}{$\APLbox$TRACE}
 \wkey{unicode character}{$\APLbox$UCS}
-
-\section{Emacs interaction mode}
-\key{beginning of defun}{C-M-a}
-\key{end of defun}{C-M-e}
-\key{find function at point}{M-.}
-\key{apropos symbol}{C-c C-a}
-\key{edit function}{C-c C-f}
-\key{show help for symbol}{C-c C-h}
-\key{finnapl list}{C-c TAB}
-\key{show keyboard}{C-c C-k}
-\key{plot line}{C-c RET}
-\key{edit variable}{C-c C-v}
-\key{trace}{C-c C-.}
-\section{Emacs edit mode}
-
-
-% C-c             Prefix Command
-% ESC             Prefix Command
-% insert space    s-SPC           gnu-apl-insert-spc
-% s-!             insert-sym-apl-i-beam
-% s-"             insert-sym-apl-not-identical-to
-% s-#             insert-sym-apl-del-stile
-% s-$             insert-sym-apl-delta-stile
-% s-%             insert-sym-apl-circle-stile
-% s-&             insert-sym-apl-circled-minus
-% s-'             insert-sym-apl-up-tack-jot
-% s-(             insert-sym-apl-down-caret-tilde
-% s-)             insert-sym-apl-up-caret-tilde
-% s-*             insert-sym-apl-circle-star
-% s-+             insert-sym-apl-quad-divide
-% s-,             insert-sym-apl-shoe-jot
-% s--             insert-sym-apl-multiplication-sign
-% s-/             insert-sym-apl-slash-bar
-% s-0             insert-sym-apl-logical-and
-% s-1             insert-sym-apl-diaeresis
-% s-2             insert-sym-apl-macron
-% s-3             insert-sym-apl-less-than
-% s-4             insert-sym-apl-less-than-or-equal-to
-% s-5             insert-sym-apl-equals
-% s-6             insert-sym-apl-greater-than-or-equal-to
-% s-7             insert-sym-apl-greater-than
-% s-8             insert-sym-apl-not-equal-to
-% s-9             insert-sym-apl-logical-or
-% s-:             insert-sym-apl-identical-to
-% s-;             insert-sym-apl-down-tack-jot
-% s-<             insert-sym-apl-comma-bar
-% s-=             insert-sym-apl-division-sign
-% s->             insert-sym-apl-backslash-bar
-% s-?             insert-sym-apl-quad-colon
-% s-@             insert-sym-apl-del-tilde
-% s-A             insert-sym-apl-alpha-underbar
-% s-B             insert-sym-apl-pound-sign
-% s-C             insert-sym-apl-left-shoe-stile
-% s-E             insert-sym-apl-epsilon-underbar
-% s-F             insert-sym-apl-del-tilde
-% s-H             insert-sym-apl-delta-underbar
-% s-I             insert-sym-apl-iota-underbar
-% s-J             insert-sym-apl-jot-diaeresis
-% s-K             insert-sym-apl-quad-diamond
-% s-L             insert-sym-apl-squish-quad
-% s-O             insert-sym-apl-circle-diaeresis
-% s-P             insert-sym-apl-star-diaeresis
-% s-T             insert-sym-apl-tilde-diaeresis
-% s-W             insert-sym-apl-omega-underbar
-% s-X             insert-sym-apl-greek-letter-chi
-% s-Y             insert-sym-apl-yen-sign
-% s-[             insert-sym-apl-leftarrow
-% s-\             insert-sym-apl-right-tack
-% s-]             insert-sym-apl-rightarrow
-% s-^             insert-sym-apl-circle-backslash
-% s-_             insert-sym-apl-exclamation-mark
-% s-`             insert-sym-apl-diamond
-% s-a             insert-sym-apl-alpha
-% s-b             insert-sym-apl-up-tack
-% s-c             insert-sym-apl-intersection
-% s-d             insert-sym-apl-left-floor
-% s-e             insert-sym-apl-epsilon
-% s-f             insert-sym-apl-underscore
-% s-g             insert-sym-apl-nabla
-% s-h             insert-sym-apl-increment
-% s-i             insert-sym-apl-iota
-% s-j             insert-sym-apl-ring-operator
-% s-k             insert-sym-apl-apostrophe
-% s-l             insert-sym-apl-quad
-% s-m             insert-sym-apl-divides
-% s-n             insert-sym-apl-down-tack
-% s-o             insert-sym-apl-circle
-% s-p             insert-sym-apl-star-operator
-% s-q             insert-sym-apl-question-mark
-% s-r             insert-sym-apl-rho
-% s-s             insert-sym-apl-left-ceiling
-% s-t             insert-sym-apl-tilde
-% s-u             insert-sym-apl-downarrow
-% s-v             insert-sym-apl-union
-% s-w             insert-sym-apl-omega
-% s-x             insert-sym-apl-superset-of
-% s-y             insert-sym-apl-uparrow
-% s-z             insert-sym-apl-subset-of
-% s-{             insert-sym-apl-quote-quad
-% s-|             insert-sym-apl-left-tack
-% s-}             insert-sym-apl-zilde
-
-\key{go to beginning of defun}{C-M-a}
-\key{go to end of defun}{C-M-e}
-\key{find function at point}{M-.}
-\key{\rul}{}
-\key{apropos symbol}{C-c C-a}
-\key{interactive send current function}{C-c C-c}
-\key{help for symbol}{C-c C-h}
-\key{finnapl list}{C-c TAB}
-\key{show keyboard}{C-c C-k}
-\key{interactive send buffer}{C-c C-l}
-\key{interactive send region}{C-c C-s}
-\key{switch to interactive}{C-c C-z}
-\key{trace}{C-c C-.}
-\key{indent}{C-M-q}
-
 \section{Notation}
 \bkey{comment}{$\APLcomment$}
 \bkey{statement separator}{$\diamond$}
@@ -581,7 +514,7 @@ see:
 \bkey{${b \choose a}$}{a!b}
 \bkey{\rul}{}
 \bkey{a$\pi$}{$\APLcirc*$a}
-\bkey{a=1 $\to\sin$(b), a=2 $\to\cos$(b), a=3 $\to\tan$(b)}{a $\APLcirc*$ b}
+\bkey{circle (trig) function}{a $\APLcirc*$ b}
 \bkey{random integer in [1,a]}{?a}
 \bkey{a distinct random integers in [1,b]}{a?b}
 \bkey{\rul}{}
@@ -591,20 +524,21 @@ see:
 \bkey{array with shape A and data elements B}{A$\rho$ B}
 \bkey{inverse matrix of A}{$\APLinv$ A}
 \bkey{B$^{-1}$A (solution to $Bx=A$)}{A$\APLinv$B}
-\bkey{reverse elements of A (1$^{st}$ index)}{}
+\bkey{reverse elements of A (1$^{st}$ index)}{$\ominus$A}
+\bkey{rotate B by A positions}{A$\ominus$B}
 \bkey{reverse elements of A (last index)}{$\APLvert{\Circle}$A}
-\bkey{rotate B by A positions}{A$\APLvert{\Circle}$B}
+\bkey{rotate B by A positions (last index)}{A$\APLvert{\Circle}$B}
 \bkey{drop first A elements of B}{A$\downarrow$B}
 \bkey{select first A elements of B}{A$\uparrow$B}
 \bkey{intersection}{A$\cap$B}
 \bkey{set (remove duplicates)}{$\cup$A}
 \bkey{union}{A$\cup$B}
 \bkey{identity}{$\vdash$A}
-\bkey{take right hand side}{A$\vdash$B}
+\bkey{take right hand side (B)}{A$\vdash$B}
 \bkey{null}{$\dashv$A}
-\bkey{take left hand side}{A$\dashv$B}
+\bkey{take left hand side (A)}{A$\dashv$B}
 \bkey{i-th element of A}{A[i]}
-\bkey{element of A with indices i, j, k, $\ldots$}{A[i j k $\ldots$]}
+\bkey{elements of A with indices i, j, k, $\ldots$}{A[i j k $\ldots$]}
 \bkey{element of A w/indices i, j, $\ldots$ in 1$^{st}$ dimension, k, l, $\ldots$ in second, $\ldots$}{A[i $\ldots$;  k $\ldots$; $\ldots$]}
 \bkey{\rul}{}
 \bkey{transpose of A}{$\invdiameter$A}
@@ -623,6 +557,7 @@ see:
 \bkey{Decode single digits of B with respect to base A}{A$\bot$B}
 \bkey{Encode B with respect to bases given by A}{A$\top$B}
 \bkey{\rul}{}
+\bkey{line label A}{A:}
 \bkey{branch to line A}{$\rightarrow$A}
 \bkey{\rul}{}
 \bkey{execute APL expression A}{$\APLcirc{\bot}$A}
@@ -634,8 +569,15 @@ see:
 \bkey{\rul}{}
 \bkey{reduce {\tt op} over array A}{op/A}
 \bkey{compress: select B using A as mask}{A/B}
-\bkey{expand: insert zeros in B using A as mask}{A$\setminus$B}
+\bkey{A/B on last dimension}{A$\notslash$B}
+\bkey{expand: insert zeros in B using A as mask}{A$\backslash$B}
+\bkey{A$\backslash$B on last dimension}{A$\notbackslash$B}
+\bkey{inner product with functions f, g}{Af.gB}
+\bkey{outer product with function f}{A$\circ$.fB}
 \bkey{for each b$\in$B, apply: Ab}{A${}^{"}$B}
+\bkey{axis: AfC, over Bth axis}{Af[B]C}
+\bkey{duplicate/commute}{}
+\bkey{compose}{A$\circ$B}
 \section{Circle function}
 
 
@@ -669,7 +611,6 @@ $f(d,v) = {\big(v_1^d+\cdots+v_n^d\big)^{1/d}}$
 {\bf Dynamic function definition (dfn):}
 
 $\alpha$ is the left argument, $\omega$ is the right argument.
-Function is written between curly brackets.
 
 {\tt f $\leftarrow$ \{ ( +/$\omega$*$\alpha$ ) * ($\div\alpha$)  \}}
 
@@ -691,11 +632,10 @@ $\;\;$  res $\leftarrow$ sum*($\div$d)
 
 $\APLdown$}
 
-\section{Error Recovery}
-
+%\section{Error Recovery}
 % do we really want this section?
 
-\section{Examples}
+%\section{Examples}
 
 % some example showing control flow?
 % commented? (will if fit?)
