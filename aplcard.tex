@@ -340,14 +340,14 @@ Notation for commands:
 \+&{\tt G}& logging facility & {\tt O}& object    & {\tt S}& symbol  \cr
 \+&{\tt W}& workspace        &        &           &        &         \cr
 {\bf APL standard commands}\par
-\akey{FIXME:}{)CHECK[ xxxx ]}
+\akey{check workspace intergity}{)CHECK}
 \akey{clear workspace}{)CLEAR}
 \akey{save workspace as {\tt CONTINUE} and exit}{)CONTINUE}
 \akey{copies objects from given workspace}{)COPY [L] W [O $\ldots$]}
-\akey{remove workspace}{)DROP [L] W}
-\akey{dump workspace (readable, HTML escaped)}{)DUMP-HTML [[L] W]}
-\akey{dump workspace (readable APL)}{)DUMP [[L] W]}
-\akey{dump workspace (readable APL, verbose)}{)DUMPV [[L] W]}
+\akey{remove W}{)DROP [L] W}
+\akey{dump W (readable, HTML escaped)}{)DUMP-HTML [[L] W]}
+\akey{dump W (readable APL)}{)DUMP [[L] W]}
+\akey{dump W (readable APL, verbose)}{)DUMPV [[L] W]}
 \akey{erase symbol(s)}{)ERASE S $\ldots$}
 \akey{show functions}{)FNS [from-to]}
 \akey{help}{)HELP [primitive]}
@@ -356,7 +356,7 @@ Notation for commands:
 \akey{loads workspace (IBM .atf format)}{)IN F [O $\ldots$]}
 \akey{show libraries and paths}{)LIBS [[L] path]}
 \akey{show saved workspaces}{)LIB [L|P] [from-to]}
-\akey{load workspace}{)LOAD [L] W}
+\akey{load workspace W}{)LOAD [L] W}
 \akey{show more error info}{)MORE}
 \akey{lists symbols matching name}{)NMS [from-to]}
 \akey{quit APL}{)OFF}
@@ -364,9 +364,9 @@ Notation for commands:
 \akey{dump workspace (IBM .atf format)}{)OUT name [O $\ldots$]}
 \akey{protects during copying}{)PCOPY [L] W [O $\ldots$]}
 \akey{protects during loading}{)PIN F [O $\ldots$]}
-\akey{FIXME:}{)QLOAD [[L] W]}
+\akey{quiet load}{)QLOAD [[L] W]}
 \akey{reset state indicator}{)RESET }
-\akey{save workspace}{)SAVE [[L] W]}
+\akey{save workspace as W}{)SAVE [[L] W]}
 \akey{clear suspended functions}{)SIC}
 \akey{see suspended functions and locals}{)SINL}
 \akey{see suspended functions}{)SIS}
@@ -379,13 +379,13 @@ Notation for commands:
 {\bf GNU extension commands}\par
 \akey{toggles boxing of values when printing}{]BOXING [OFF|num]}
 \akey{toggle colored output}{]COLOR [ON|OFF]}
-\akey{dump workspace in HTML file}{]DOXY [path]}
+\akey{dump W in HTML file}{]DOXY [path]}
 \akey{FIXME:}{]EXPECT error\_count}
 \akey{help}{]HELP [primitive]}
 \akey{show keyboard layout}{]KEYB}
 \akey{FIXME:}{]LIB [L|P] [from-to]} % omitting args is same as ]LIB 0
 \akey{show/set logging facilities}{]LOG [G [ON|OFF]]}
-\akey{FIXME:}{]NEXTFILE}
+\akey{next testcase file}{]NEXTFILE}
 \akey{FIXME:}{]OWNERS} % same as )VALUES but dumped to stderr
 \akey{performance statistics}{]PSTAT [CLEAR|SAVE]}
 \akey{FIXME:}{]SIS} % Same as ]OWNERS???
@@ -415,7 +415,7 @@ Notation for commands:
 \wkey{right argument}{$\APLbox$R}
 \wkey{random link}{$\APLbox$RL}
 \wkey{shared variable event}{$\APLbox$SVE}
-\wkey{system links}{$\APLbox$SYL}
+\wkey{system limits}{$\APLbox$SYL}
 \wkey{terminal control characters}{$\APLbox$TC}
 \wkey{time stamp (current time)}{$\APLbox$TS}
 \wkey{time zone (offset from GMT)}{$\APLbox$TZ}
