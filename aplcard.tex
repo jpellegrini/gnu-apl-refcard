@@ -79,8 +79,7 @@
 Released under the terms of the GNU General Public License version 3 or later.
 For more APL documentation, check the GNU APL site.
 For the \TeX{} source for this card,
-see:
-
+see:\par
 {\small https://www.github.com/jpellegrini/gnu-apl-refcard}
 \endgroup}
 
@@ -601,7 +600,7 @@ Notation for commands:
 \+&$\APLminus$11 & {\tt 0J1}$\times${\tt B}   & 11 & imag part of {\tt B} \cr
 \+&$\APLminus$12 & {\tt *0J1}$\times${\tt B} ($e^{iB}$) & 12 & arc {\tt B} (phase of {\tt B}) \cr
 
-For {\tt A}$=8$, the sign before the square root is the opposite sign of $\tt B$.
+For {\tt A}$=8$, the sign before the square root is opposite of $\tt B$.
 
 \section{Function Definition}
 
@@ -616,11 +615,18 @@ $\alpha$ is the left argument, $\omega$ is the right argument.
 
 {\bf Traditional function definiton (tradfn):}
 
-$\APLdown$ marks begin/end of defun.
-``{\tt $\APLdown$res $\leftarrow$ a f b ;u ;v}'' means
-``function $f$ takes left argument {\tt a},
-right argument {\tt b}, uses local variables {\tt u}
-and {\tt v}, and returns its result in variable {\tt res}''.
+% $\APLdown$ marks begin/end of defun.
+% ``{\tt $\APLdown$res $\leftarrow$ a f b ;u ;v}'' means
+% ``function $f$ takes left argument {\tt a},
+% right argument {\tt b}, uses local variables {\tt u}
+% and {\tt v}, and returns its result in variable {\tt res}''.
+
+% we can save one precious line making the above text a bit more terse:
+$\APLdown$: begin/end defun.
+``{\tt $\APLdown$R $\leftarrow$ A f B ;U ;V}'' is
+``{\tt f} takes left arg {\tt A},
+right arg {\tt B}, has local vars {\tt U},
+{\tt V}, and returns result in {\tt R}''.
 
 {\tt $\APLdown$res $\leftarrow$ d f v ;sq ;sum
 
