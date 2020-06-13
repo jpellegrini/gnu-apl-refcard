@@ -4,4 +4,5 @@ This reference card was adapted from `calccard.tex`, which is part of
 GNU Emacs. The file `pdflayout.sty` is also part of GNU Emacs, and
 was included without modification.
 
-To actually make the PDF, run `make`
+You may get the [PDF file](aplcard.pdf) or build the PDF from the 
+source by run `make`.
