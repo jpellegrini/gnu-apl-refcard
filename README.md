@@ -5,4 +5,4 @@ GNU Emacs. The file `pdflayout.sty` is also part of GNU Emacs, and
 was included without modification.
 
 You may get the [PDF file](aplcard.pdf) or build the PDF from the 
-source by run `make`.
+source by running `make`.
